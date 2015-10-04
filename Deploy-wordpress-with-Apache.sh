@@ -14,11 +14,28 @@ tools=`yum install nmap traceroute tcpdump iftop htop w3m vim wget -y`
 InstallationOfApp=`yum install php php-gd php-mysql mysql-server mysql httpd httpd-devel -y`
 
 #Download wordpress now for installation
-Wordpress=`wget http://wordpress.org/latest.tar.gz -P /tmp`
+DownloadWordpress=`wget http://wordpress.org/latest.tar.gz -P /tmp`
 
 #Chmodlastest.tar.gz
-chmodlatest=`chmod + /tmp/latest.tar.gz`
+chmodwordpress=`chmod + /tmp/latest.tar.gz`
 
 #UntarInto/var/www
-untar=`tar -xvzf /tmp/latest.tar.gz -C /var/www`
+untarWordpress=`tar -xvzf /tmp/latest.tar.gz -C /var/www`
 
+#ChownDocumentRootwordpress
+ChownWordpress=`chown -R apache:apache /var/www/wordpress`
+
+#CreatingTheVhost
+CreatingTheVhost=
+`printf '%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n%s\n'
+'<VirtualHost *:80>' 
+'DocumentRoot /var/www/wordpress' 
+'ServerName www.myweb.com'
+'ServerAlias myweb.com'
+'<Directory /var/www/wordpress>'
+'Options FollowSymlinks'
+'Allow from all'
+'</Directory'
+'ErrorLog /var/log/httpd/wordpress-error-log'
+'CustomLog /var/log/httpd/wordpress-acess-log common'
+'</VirtualHost' >> /etc/httpd/conf.d/myweb.conf`
