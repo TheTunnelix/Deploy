@@ -70,8 +70,8 @@ null= `cat /dev/null > /etc/my.cnf`
 `InsertUsersql=    printf '%s\n'    'user=mysql'                        >> /etc/my.cnf`
 `InsertSymbolic=   printf '%s\n'    'symbolic-links=0'                  >> /etc/my.cnf`
 `Insertclient=     printf '%s\n'    '[client]'                          >> /etc/my.cnf`
-`Insertuserwp=     printf '%s\n'    'root'                              >> /etc/my.cnf`
-`Insertpasswp=     printf '%s\n'    'rootpassword'                      >> /etc/my.cnf`
+`Insertuserwp=     printf '%s\n'    'user=root'                         >> /etc/my.cnf`
+`Insertpasswp=     printf '%s\n'    'password=rootpassword'             >> /etc/my.cnf`
 
 
 # ====================================== CREATING DB FOR wordpress ==============================
