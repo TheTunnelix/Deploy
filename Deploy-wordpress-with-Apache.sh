@@ -59,6 +59,21 @@ bashmagic= `mysql -e "DROP USER ''@'$(hostname)';"`
 DemoDelete= `mysql -e "DROP DATABASE test;"`
 #Changes take effet here
 Flush= `mysql -e "FLUSH PRIVILEGES;"`
+
+#Modifying my.cnf
+
+null= `cat /dev/null > my.cnf`
+
+`Insertmysqld=     printf '%s\n'    '[mysqld]'                          >> /etc/my.cnf`
+`Insertdatadir=    printf '%s\n'    'datadir=/var/lib/mysql'            >> /etc/my.cnf`
+`InsertSocket=     printf '%s\n'    'socket=/var/lib/mysql/mysql.sock'  >> /etc/my.cnf`
+`InsertUsersql=    printf '%s\n'    'user=mysql'                        >> /etc/my.cnf`
+`InsertSymbolic=   printf '%s\n'    'symbolic-links=0'                  >> /etc/my.cnf`
+`Insertclient=     printf '%s\n'    '[client]'                          >> /etc/my.cnf`
+`Insertuserwp=     printf '%s\n'    'root'                              >> /etc/my.cnf`
+`Insertpasswp=     printf '%s\n'    'rootpassword'                      >> /etc/my.cnf`
+
+
 # ====================================== CREATING DB FOR wordpress ==============================
 # Create database for wordpress
 Createdb= `mysql -e "CREATE DATABASE mydb;"`
