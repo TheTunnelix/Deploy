@@ -31,7 +31,6 @@
 #ChownWordpress=`chown -R apache:apache /var/www/wordpress`
 
 #CreatingTheVhost
-
 #`OpenVirtualHost=     printf '%s\n'    '<VirtualHost *:80>'                          >> /etc/httpd/conf.d/myweb.conf`
 #`InsertDocumentRoot=  printf '%s\n'    'DocumentRoot /var/www/wordpress'             >> /etc/httpd/conf.d/myweb.conf`
 #`InsertServerName=    printf '%s\n'    'ServerName www.myweb.com'                    >> /etc/httpd/conf.d/myweb.conf`
@@ -43,33 +42,28 @@
 #`InsertErrorLog=      printf '%s\n'    'ErrorLog /var/log/httpd/error-log'           >> /etc/httpd/conf.d/myweb.conf`
 #`InsertAcessLog=      printf '%s\n'    'CustomLog /var/log/httpd/access-log common'  >> /etc/httpd/conf.d/myweb.conf`
 #`CloseVirtualHost=    printf '%s\n'    '</VirtualHost>'                              >> /etc/httpd/conf.d/myweb.conf`
-
-
 # ================================ START MYSQL AND APACHE CONFIGURATION ===================================
-
 #StartService
 ServiceMysqlStart= `service mysqld start`
-ServiceApacheStart= `service httpd start`
-
+#ServiceApacheStart= `service httpd start`
 #StopFirewall
 StopFirewall= `service iptables stop`
-
 # ================================= Setting up MySQL Giving root its right ============================================
-
 #update root password and remove test database
 updaterootpassword= `mysql -e "UPDATE mysql.user SET Password = PASSWORD('rootpassword') WHERE User = 'root';"`
-
 #Remove anonymous password
 RemoveAnonymous= `mysql -e "DROP USER ''@'localhost';"`
-
 #Drop user since hostname varies
 bashmagic= `mysql -e "DROP USER ''@'$(hostname)';"`
-
 #Remove demo db
 DemoDelete= `mysql -e "DROP DATABASE test;"`
-
 #Changes take effet here
 Flush= `mysql -e "FLUSH PRIVILEGES;"`
-
 # ====================================== CREATING DB FOR wordpress ==============================
+# Create database for wordpress
+Createdb= `mysql -e "CREATE DATABASE mydb;"`
+# Create username
+CreateUser= `mysql -e "CREATE USER myuser;"`
+# Update myuser username for wordpress
+UpdateMyUserPassword= `mysql -e "UPDATE mysql.user SET Password = PASSWORD('mypassword') WHERE User = 'myuser';"`
 
