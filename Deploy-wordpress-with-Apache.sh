@@ -1,6 +1,8 @@
 #! /bin/bash
 # Author -TheTunnelix
 
+# ================================  UPDATE AND INSTALLATION START ====================================
+
 #Update the CentOS after minimum install
 #update=`yum update -y`
 
@@ -16,6 +18,9 @@
 #Download wordpress now for installation
 #DownloadWordpress=`wget http://wordpress.org/latest.tar.gz -P /tmp`
 
+
+# ========================== TWEAKING CONFIGURATION AND SETTING UP VHOST ============================
+
 #Chmodlastest.tar.gz
 #chmodwordpress=`chmod + /tmp/latest.tar.gz`
 
@@ -27,10 +32,10 @@
 
 #CreatingTheVhost
 
-#`OpenVirtualHost=     printf '%s\n'    '<VirtualHost *:80>'                >> /etc/httpd/conf.d/myweb.conf`
-#`InsertDocumentRoot=  printf '%s\n'    'DocumentRoot /var/www/wordpress'   >> /etc/httpd/conf.d/myweb.conf`
-#`InsertServerName=    printf '%s\n'    'ServerName www.myweb.com'          >> /etc/httpd/conf.d/myweb.conf`
-#`InsertServerAlias=   printf '%s\n'    'ServerAlias myweb.com'             >> /etc/httpd/conf.d/myweb.conf`
+#`OpenVirtualHost=     printf '%s\n'    '<VirtualHost *:80>'                          >> /etc/httpd/conf.d/myweb.conf`
+#`InsertDocumentRoot=  printf '%s\n'    'DocumentRoot /var/www/wordpress'             >> /etc/httpd/conf.d/myweb.conf`
+#`InsertServerName=    printf '%s\n'    'ServerName www.myweb.com'                    >> /etc/httpd/conf.d/myweb.conf`
+#`InsertServerAlias=   printf '%s\n'    'ServerAlias myweb.com'                       >> /etc/httpd/conf.d/myweb.conf`
 #`OpenDirectory=       printf '%s\n'    '<Directory /var/www/wordpress>'              >> /etc/httpd/conf.d/myweb.conf`
 #`InsertOptionsfsym=   printf '%s\n'    'Options FollowSymlinks'                      >> /etc/httpd/conf.d/myweb.conf`
 #`InsertAllow=         printf '%s\n'    'Allow from all'                              >> /etc/httpd/conf.d/myweb.conf`
@@ -39,6 +44,9 @@
 #`InsertAcessLog=      printf '%s\n'    'CustomLog /var/log/httpd/access-log common'  >> /etc/httpd/conf.d/myweb.conf`
 #`CloseVirtualHost=    printf '%s\n'    '</VirtualHost>'                              >> /etc/httpd/conf.d/myweb.conf`
 
+
+# ================================ START MYSQL AND APACHE CONFIGURATION ===================================
+
 #StartService
 ServiceMysqlStart= `service mysqld start`
 ServiceApacheStart= `service httpd start`
@@ -46,9 +54,22 @@ ServiceApacheStart= `service httpd start`
 #StopFirewall
 StopFirewall= `service iptables stop`
 
-#Create Database
-createdb= `mysql -e "create database mydb;"`
-createuser= `mysql -e "create user myuser;"`
+# ================================= Setting up MySQL Giving root its right ============================================
 
-grantprivileges= `mysql -e "grant  "`
+#update root password and remove test database
+updaterootpassword= `mysql -e "UPDATE mysql.user SET Password = PASSWORD('rootpassword') WHERE User = 'root';"`
+
+#Remove anonymous password
+RemoveAnonymous= `mysql -e "DROP USER ''@'localhost';"`
+
+#Drop user since hostname varies
+bashmagic= `mysql -e "DROP USER ''@'$(hostname)';"`
+
+#Remove demo db
+DemoDelete= `mysql -e "DROP DATABASE test;"`
+
+#Changes take effet here
+Flush= `mysql -e "FLUSH PRIVILEGES;"`
+
+# ====================================== CREATING DB FOR wordpress ==============================
 
