@@ -40,6 +40,13 @@
 #`CloseVirtualHost=    printf '%s\n'    '</VirtualHost>'                              >> /etc/httpd/conf.d/myweb.conf`
 
 #StartService
-ServiceMysqlStart= `Service mysqld start`
-ServiceApacheStart= `Service httpd start`
+ServiceMysqlStart= `service mysqld start`
+ServiceApacheStart= `service httpd start`
+
+#StopFirewall
+StopFirewall= `service iptables stop`
+
+#Create Database
+createdb= `mysql -e "create database myweb;"`
+grantprivileges= `mysql -e "grant  "`
 
