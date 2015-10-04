@@ -28,7 +28,7 @@
 #CreatingTheVhost
 
 `OpenVirtualHost= printf '%s\n' '<VirtualHost *:80>' >> /etc/httpd/conf.d/myweb.conf`
-`InsertDocumentRoot= printf '%s\n' 'DocumentRoot /var/www/wordpress'` >> /etc/httpd/conf.d/myweb.conf
+`InsertDocumentRoot= printf '%s\n' 'DocumentRoot /var/www/wordpress'` >> /etc/httpd/conf.d/myweb.conf`
 #'ServerName www.myweb.com'
 #'ServerAlias myweb.com'
 #'<Directory /var/www/wordpress>'
