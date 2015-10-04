@@ -27,14 +27,14 @@
 
 #CreatingTheVhost
 
-`OpenVirtualHost= printf '%s\n' '<VirtualHost *:80>' >> /etc/httpd/conf.d/myweb.conf`
-`InsertDocumentRoot= printf '%s\n' 'DocumentRoot /var/www/wordpress' >> /etc/httpd/conf.d/myweb.conf`
-#'ServerName www.myweb.com'
-#'ServerAlias myweb.com'
-#'<Directory /var/www/wordpress>'
-#'Options FollowSymlinks'
-#'Allow from all'
-#'</Directory'
-#'ErrorLog /var/log/httpd/wordpress-error-log'
-#'CustomLog /var/log/httpd/wordpress-acess-log common'
-#'</VirtualHost' >>?> /etc/httpd/conf.d/myweb.conf
+`OpenVirtualHost=     printf '%s\n'    '<VirtualHost *:80>'                >> /etc/httpd/conf.d/myweb.conf`
+`InsertDocumentRoot=  printf '%s\n'    'DocumentRoot /var/www/wordpress'   >> /etc/httpd/conf.d/myweb.conf`
+`InsertServerName=    printf '%s\n'    'ServerName www.myweb.com'          >> /etc/httpd/conf.d/myweb.conf`
+`InsertServerAlias=   printf '%s\n'    'ServerAlias myweb.com'             >> /etc/httpd/conf.d/myweb.conf`
+`OpenDirectory=       printf '%s\n'    '<Directory /var/www/wordpress>'    >> /etc/httpd/conf.d/myweb.conf`
+`InsertOptionsfsym=   printf '%s\n'    'Options FollowSymlinks'            >> /etc/httpd/conf.d/myweb.conf`
+`InsertAllow=         printf '%s\n'    'Allow from all'                    >> /etc/httpd/conf.d/myweb.conf`
+`CloseDirectory=      printf '%s\n'    '</Directory'                       >> /etc/httpd/conf.d/myweb.conf`
+`InsertErrorLog=      printf '%s\n'    '/var/log/httpd/error-log'          >> /etc/httpd/conf.d/myweb.conf`
+`InsertAcessLog=      printf '%s\n'    '/var/log/httpd/access-log common'  >> /etc/httpd/conf.d/myweb.conf`
+`CloseVirtualHost=    printf '%s\n'    '</VirtualHost'                     >> /etc/httpd/conf.d/myweb.conf`
