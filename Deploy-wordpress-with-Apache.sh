@@ -8,8 +8,17 @@ update=`yum update -y`
 repo=`yum install epel-release -y && yum clean all
 `
 #Install prerequisite tools packages for troubleshooting
-tools=`yum install nmap traceroute tcpdump iftop htop w3m vim -y`
+tools=`yum install nmap traceroute tcpdump iftop htop w3m vim wget -y`
 
 #Install the php,mysql,httpd with their prerequisites
-installA=`yum install php php-gd php-mysql mysql-server mysql -y`
+InstallationOfApp=`yum install php php-gd php-mysql mysql-server mysql httpd httpd-devel -y`
+
+#Download wordpress now for installation
+Wordpress=`wget http://wordpress.org/latest.tar.gz -P /tmp`
+
+#Chmodlastest.tar.gz
+chmodlatest=`chmod + /tmp/latest.tar.gz`
+
+#UntarInto/var/www
+untar=`tar -xvzf /tmp/latest.tar.gz -C /var/www`
 
