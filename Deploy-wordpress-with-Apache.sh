@@ -65,5 +65,5 @@ Createdb= `mysql -e "CREATE DATABASE mydb;"`
 # Create username
 CreateUser= `mysql -e "CREATE USER myuser;"`
 # Update myuser username for wordpress
-UpdateMyUserPassword= `mysql -e "UPDATE mysql.user SET Password = PASSWORD('mypassword') WHERE User = 'myuser';"`
+UpdateMyUserPassword= `mysql -e "UPDATE mysql.myuser SET Password = PASSWORD('mypassword') WHERE User = 'myuser';"`
 
