@@ -62,7 +62,7 @@ Flush= `mysql -e "FLUSH PRIVILEGES;"`
 
 #Modifying my.cnf
 
-null= `cat /dev/null > my.cnf`
+null= `cat /dev/null > /etc/my.cnf`
 
 `Insertmysqld=     printf '%s\n'    '[mysqld]'                          >> /etc/my.cnf`
 `Insertdatadir=    printf '%s\n'    'datadir=/var/lib/mysql'            >> /etc/my.cnf`
