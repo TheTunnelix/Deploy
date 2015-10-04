@@ -73,7 +73,7 @@ null= `cat /dev/null > /etc/my.cnf`
 `Insertuserwp=     printf '%s\n'    'user=root'                         >> /etc/my.cnf`
 `Insertpasswp=     printf '%s\n'    'password=rootpassword'             >> /etc/my.cnf`
 
-
+restartmysql= `service mysqld restart`
 # ====================================== CREATING DB FOR wordpress ==============================
 # Create database for wordpress
 Createdb= `mysql -e "CREATE DATABASE mydb;"`
