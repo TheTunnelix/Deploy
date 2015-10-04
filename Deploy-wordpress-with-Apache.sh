@@ -47,6 +47,8 @@ ServiceApacheStart= `service httpd start`
 StopFirewall= `service iptables stop`
 
 #Create Database
-createdb= `mysql -e "create database myweb;"`
+createdb= `mysql -e "create database mydb;"`
+createuser= `mysql -e "create user myuser;"`
+
 grantprivileges= `mysql -e "grant  "`
 
