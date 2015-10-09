@@ -22,7 +22,7 @@ DownloadWordpress=`wget http://wordpress.org/latest.tar.gz -P /tmp`
 # ========================== TWEAKING CONFIGURATION AND SETTING UP VHOST ============================
 
 #Chmodlastest.tar.gz
-chmodwordpress=`chmod + /tmp/latest.tar.gz`
+chmodwordpress=`chmod +x /tmp/latest.tar.gz`
 
 #UntarInto/var/www
 untarWordpress=`tar -xvzf /tmp/latest.tar.gz -C /var/www`
