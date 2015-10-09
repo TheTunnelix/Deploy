@@ -1,4 +1,4 @@
-! /bin/bash
+#! /bin/bash
 # Author -TheTunnelix
 
 # ================================  UPDATE AND INSTALLATION START ====================================
